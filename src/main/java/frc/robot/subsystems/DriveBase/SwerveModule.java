@@ -85,24 +85,15 @@ public class SwerveModule extends SubsystemBase {
 
     final double MAG_MAX = 4096.0;
     final double WHEEL_MAX = 2048.0;
+    final double MAG_TO_MOTOR_RATIO = 150.0 / 7.0 / 2;
 
-    public void zeroTurningWheel(double MagTickTarget) {
-        double magTicks = m_magEncoder.get();
-        double magRad = magTicks / MAG_MAX * (Math.PI * 2);
-        double magTargetRad = MagTickTarget / MAG_MAX * (Math.PI * 2);
+    public void zeroTurningWheel(double MagZeroTick) {
+        double magZeroMotorTicks = MagZeroTick * MAG_TO_MOTOR_RATIO;
 
-        double wheelRad = m_turningMotor.getRotationRadians();
+        double relativeMotorMag = m_magEncoder.get();
+        double relativeMotorTicks = relativeMotorMag * MAG_TO_MOTOR_RATIO;
 
-        double diffRad = magTargetRad - magRad;
-
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " test magTickTarget", MagTickTarget);
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " test magTicks", magTicks);
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " test diffRad", diffRad);
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " test magRad ", magRad);
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " test magTargetRad", magTargetRad);
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " test wheelRad ", wheelRad);
-
-        m_turningMotor.set(wheelRad + diffRad);
+        m_turningMotor.setMotorPositionTick(relativeMotorTicks - magZeroMotorTicks);
     }
 
     public void setTurningWheel(double rad) {
@@ -121,7 +112,8 @@ public class SwerveModule extends SubsystemBase {
         int magTicks = m_magEncoder.get();
         double wheelTicks = m_turningMotor.getRotationTicks();
 
-        //System.out.println(this.m_magEncoder.m_analogInput.getChannel() + " Swerve Mag " + magTicks);
+        // System.out.println(this.m_magEncoder.m_analogInput.getChannel() + " Swerve
+        // Mag " + magTicks);
         SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " Swerve Mag ", magTicks);
         SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " Swerve Wheel ", wheelTicks);
         super.periodic();

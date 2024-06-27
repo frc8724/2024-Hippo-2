@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kOperatorControllerPort = 1;
   }
 
   public static class DriveConstants {
@@ -56,7 +57,7 @@ public final class Constants {
     public static final boolean kFrontRightTurningEncoderReversed = true;
     public static final boolean kRearRightTurningEncoderReversed = true;
 
-    public static final boolean kFrontLeftDriveEncoderReversed = true;
+    public static final boolean kFrontLeftDriveEncoderReversed = false;
     public static final boolean kRearLeftDriveEncoderReversed = false;
     public static final boolean kFrontRightDriveEncoderReversed = true;
     public static final boolean kRearRightDriveEncoderReversed = true;
@@ -69,18 +70,18 @@ public final class Constants {
     public static final int ninety_degrees_in_ticks = 0;
     public static final int one_eighty_degrees_in_ticks = 2048;
 
-    public static final int FrontLeftMagZero = 769;
-    public static final int RearLeftMagZero = 2665;
-    public static final int FrontRightMagZero = 456;
-    public static final int RearRightMagZero = 306;
+    public static final int FrontLeftMagZero = 2780;
+    public static final int RearLeftMagZero = 2680;
+    public static final int FrontRightMagZero = 475;
+    public static final int RearRightMagZero = 335;
 
     // If you call DriveSubsystem.drive() with a different period make sure to
     // update this.
     public static final double kDrivePeriod = TimedRobot.kDefaultPeriod;
 
-    public static final double kTrackWidth = 0.5;
+    public static final double kTrackWidth = 0.527;
     // Distance between centers of right and left wheels on robot
-    public static final double kWheelBase = 0.7;
+    public static final double kWheelBase = 0.527;
     // Distance between front and back wheels on robot
     public static final SwerveDriveKinematics kDriveKinematics = new SwerveDriveKinematics(
         new Translation2d(kWheelBase / 2, kTrackWidth / 2),
@@ -100,11 +101,15 @@ public final class Constants {
     public static final double kvVoltSecondsPerMeter = 0.8;
     public static final double kaVoltSecondsSquaredPerMeter = 0.15;
 
-    public static final double kMaxSpeedMetersPerSecond = 1.5;
+    public static final double kMaxSpeedMetersPerSecond = 5.0;
+
+    public static final double kFullDriveModifier = 1.0;
+    public static final double kSlowDriveModifier = 0.4;
   }
 
   public static final class ModuleConstants {
     public static final double kMaxModuleAngularSpeedRadiansPerSecond = 2 * Math.PI;
+    public static final double kMaxModuleAngularSpeedDegreesPerSecond = 360;
     public static final double kMaxModuleAngularAccelerationRadiansPerSecondSquared = 2 * Math.PI;
 
     public static final int kEncoderCPR = 1024;

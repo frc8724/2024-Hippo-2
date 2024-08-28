@@ -17,6 +17,7 @@ import frc.robot.motors.IMayhemTalonFX;
 import frc.robot.motors.MayhemCANSparkMax;
 import frc.robot.motors.MayhemTalonFX;
 import frc.robot.motors.MayhemTalonFX.CurrentLimit;
+import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SystemArmZero;
 import frc.robot.subsystems.ArmSubsystem.ArmIsAtPosition;
 import frc.robot.subsystems.ArmSubsystem.ArmSet;
@@ -81,6 +82,9 @@ public class RobotContainer {
         private static final IMayhemTalonFX climberRight = new FakeFalconFX(Constants.DriveConstants.kClimberRightId,
                         CurrentLimit.HIGH_CURRENT);
 
+        private static final IMayhemTalonFX shooterTopMotor = new FakeFalconFX(10, CurrentLimit.HIGH_CURRENT);
+        private static final IMayhemTalonFX shooterBottomMotor = new FakeFalconFX(11, CurrentLimit.HIGH_CURRENT);
+
         public static final DriveBaseSubsystem m_robotDrive = new DriveBaseSubsystem();
         public static final IntakeRollers m_rollers = new IntakeRollers(intakeTop);
         public static final ShooterMag m_mag = new ShooterMag(magLeft, magRight);
@@ -88,6 +92,7 @@ public class RobotContainer {
                         shooterRight);
         public static final ArmSubsystem m_arm = new ArmSubsystem(armLeft, armRight);
         public static final ClimberSubsystem m_climber = new ClimberSubsystem(climberLeft, climberRight);
+        public static final Shooter m_shooter = new Shooter(shooterTopMotor, shooterBottomMotor);
 
         // public static final Targeting m_targets = new Targeting();
         // private static final MayhemExtreme3dPro DriverStick = new

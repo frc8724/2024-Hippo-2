@@ -58,7 +58,7 @@ public class DriveBaseSubsystem extends SubsystemBase {
             DriveConstants.kRearRightTurningEncoderReversed,
             DriveConstants.RearRightMag);
 
-    private final WPI_Pigeon2 m_gyro = new WPI_Pigeon2(22);
+    private final WPI_Pigeon2 m_gyro = new WPI_Pigeon2(22, "canivore");
 
     SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
             DriveConstants.kDriveKinematics,

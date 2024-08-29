@@ -30,6 +30,7 @@ import frc.robot.subsystems.ClimberSubsystem.ClimberSetPowerLeft;
 import frc.robot.subsystems.ClimberSubsystem.ClimberSetPowerRight;
 import frc.robot.subsystems.ClimberSubsystem.ClimberSubsystem;
 import frc.robot.subsystems.DriveBase.DriveBaseSubsystem;
+import frc.robot.subsystems.DriveBase.DriveByJoystick;
 import frc.robot.subsystems.DriveBase.DriveZeroGyro;
 import frc.robot.subsystems.IntakeRollers.IntakeRollers;
 import frc.robot.subsystems.IntakeRollers.IntakeRollersSet;
@@ -96,19 +97,12 @@ public class RobotContainer {
         public static final Shooter m_shooter = new Shooter(shooterTopMotor, shooterBottomMotor);
 
         // public static final Targeting m_targets = new Targeting();
-        // private static final MayhemExtreme3dPro DriverStick = new
-        // MayhemExtreme3dPro(0);
+        private static final MayhemExtreme3dPro m_driverStick = new MayhemExtreme3dPro(0);
         // private static final MayhemLogitechAttack3 operatorStick = new
         // MayhemLogitechAttack3(2);
         private static final AutoChooser m_auto = new AutoChooser();
         // public static final Vision vision = null; // = new Vision(0);
         public static final LimeLightSubsystem m_limelight = new LimeLightSubsystem();
-
-        // Replace with CommandPS4Controller or CommandJoystick if needed
-        // private final CommandXboxController m_operatorController = new
-        // CommandXboxController(
-        // OperatorConstants.kOperatorControllerPort);
-        // private final SendableChooser<Command> m_pathPlanner;
 
         /**
          * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -116,29 +110,7 @@ public class RobotContainer {
         public RobotContainer() {
                 // Configure the trigger bindings
                 configureBindings();
-                // m_robotDrive.setDefaultCommand(
-                // new RunCommand(
-                // () -> m_robotDrive.drive(
-                // -DriverStick.DeadbandAxis(MayhemExtreme3dPro.Axis.Y,
-                // 0.10)
-                // * DriveConstants.kMaxSpeedMetersPerSecond
-                // * (DriverStick.Button(11).getAsBoolean()
-                // ? DriveConstants.kSlowDriveModifier
-                // : DriveConstants.kFullDriveModifier),
-                // -DriverStick.DeadbandAxis(MayhemExtreme3dPro.Axis.X,
-                // 0.10)
-                // * DriveConstants.kMaxSpeedMetersPerSecond
-                // * (DriverStick.Button(11).getAsBoolean()
-                // ? DriveConstants.kSlowDriveModifier
-                // : DriveConstants.kFullDriveModifier),
-                // -DriverStick.DeadbandAxis(MayhemExtreme3dPro.Axis.Z,
-                // 0.40)
-                // * ModuleConstants.kMaxModuleAngularSpeedRadiansPerSecond
-                // * (DriverStick.Button(11).getAsBoolean()
-                // ? DriveConstants.kSlowDriveModifier
-                // : DriveConstants.kFullDriveModifier),
-                // true),
-                // m_robotDrive));
+                m_robotDrive.setDefaultCommand(new DriveByJoystick(m_driverStick));
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(
@@ -151,26 +123,26 @@ public class RobotContainer {
                 // m_auto.addAuto(new AuthDriveMidNote3AndBack());
                 m_auto.addAuto(new AutoDriveOut());
                 m_auto.addAuto(new AutoTestSquare());
-                m_auto.addAuto(new AutoShootandDriveOut());
-                m_auto.addAuto(new AutoStandStill());
-                m_auto.addAuto(new AutoShootAndStandStill());
-                m_auto.addAuto(new AutoShootAndDrivex2());
+                // m_auto.addAuto(new AutoShootandDriveOut());
+                // m_auto.addAuto(new AutoStandStill());
+                // m_auto.addAuto(new AutoShootAndStandStill());
+                // m_auto.addAuto(new AutoShootAndDrivex2());
 
-                m_auto.addAuto(new AutoBlueStartLongScore2());
-                m_auto.addAuto(new AutoBlueStartLongShootandDrive());
-                m_auto.addAuto(new AutoBlueStartShortShootandDrive());
-                m_auto.addAuto(new AutoBlueStartShortScore2());
-                m_auto.addAuto(new AutoBlueScore2Mid3());
+                // m_auto.addAuto(new AutoBlueStartLongScore2());
+                // m_auto.addAuto(new AutoBlueStartLongShootandDrive());
+                // m_auto.addAuto(new AutoBlueStartShortShootandDrive());
+                // m_auto.addAuto(new AutoBlueStartShortScore2());
+                // m_auto.addAuto(new AutoBlueScore2Mid3());
 
-                m_auto.addAuto(new AutoRedStartLongScore2());
-                m_auto.addAuto(new AutoRedStartLongShootDrive());
-                m_auto.addAuto(new AutoRedStartShortShootandDrive());
-                m_auto.addAuto(new AutoRedStartShortScore2());
-                m_auto.addAuto(new AutoRedScore2Mid3());
+                // m_auto.addAuto(new AutoRedStartLongScore2());
+                // m_auto.addAuto(new AutoRedStartLongShootDrive());
+                // m_auto.addAuto(new AutoRedStartShortShootandDrive());
+                // m_auto.addAuto(new AutoRedStartShortScore2());
+                // m_auto.addAuto(new AutoRedScore2Mid3());
 
-                m_auto.addAuto(new AutoRedPositiveShootAndStandStill());
-                m_auto.addAuto(new AutoTestSpeeds());
-                m_auto.addAuto(new AutoStealAllNotes(1.0));
+                // m_auto.addAuto(new AutoRedPositiveShootAndStandStill());
+                // m_auto.addAuto(new AutoTestSpeeds());
+                // m_auto.addAuto(new AutoStealAllNotes(1.0));
 
                 // m_pathPlanner = AutoBuilder.buildAutoChooser();
                 // SmartDashboard.putData("AutoChooser:", m_pathPlanner);

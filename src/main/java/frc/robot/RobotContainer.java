@@ -24,6 +24,7 @@ import frc.robot.subsystems.ArmSubsystem.ArmSet;
 import frc.robot.subsystems.ArmSubsystem.ArmSetPower;
 import frc.robot.subsystems.ArmSubsystem.ArmSubsystem;
 import frc.robot.subsystems.Autonomous.*;
+import frc.robot.subsystems.Autonomous.test.AutoTestSquare;
 import frc.robot.subsystems.ClimberSubsystem.ClimberSetPower;
 import frc.robot.subsystems.ClimberSubsystem.ClimberSetPowerLeft;
 import frc.robot.subsystems.ClimberSubsystem.ClimberSetPowerRight;
@@ -149,6 +150,7 @@ public class RobotContainer {
 
                 // m_auto.addAuto(new AuthDriveMidNote3AndBack());
                 m_auto.addAuto(new AutoDriveOut());
+                m_auto.addAuto(new AutoTestSquare());
                 m_auto.addAuto(new AutoShootandDriveOut());
                 m_auto.addAuto(new AutoStandStill());
                 m_auto.addAuto(new AutoShootAndStandStill());

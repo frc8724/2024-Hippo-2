@@ -5,6 +5,24 @@
 package frc.robot;
 
 import frc.robot.subsystems.VisionSubsystems.Vision;
+import frc.robot.subsystems.old.ArmSubsystem.ArmIsAtPosition;
+import frc.robot.subsystems.old.ArmSubsystem.ArmSet;
+import frc.robot.subsystems.old.ArmSubsystem.ArmSetPower;
+import frc.robot.subsystems.old.ArmSubsystem.ArmSubsystem;
+import frc.robot.subsystems.old.ClimberSubsystem.ClimberSetPower;
+import frc.robot.subsystems.old.ClimberSubsystem.ClimberSetPowerLeft;
+import frc.robot.subsystems.old.ClimberSubsystem.ClimberSetPowerRight;
+import frc.robot.subsystems.old.ClimberSubsystem.ClimberSubsystem;
+import frc.robot.subsystems.old.IntakeRollers.IntakeRollers;
+import frc.robot.subsystems.old.IntakeRollers.IntakeRollersSet;
+import frc.robot.subsystems.old.ShooterSubsystem.ShootNote;
+import frc.robot.subsystems.old.ShooterSubsystem.ShootNotePost;
+import frc.robot.subsystems.old.ShooterSubsystem.ShootNotePre;
+import frc.robot.subsystems.old.ShooterSubsystem.ShooterMag;
+import frc.robot.subsystems.old.ShooterSubsystem.ShooterMagSet;
+import frc.robot.subsystems.old.ShooterSubsystem.ShooterWheelBrake;
+import frc.robot.subsystems.old.ShooterSubsystem.ShooterWheels;
+import frc.robot.subsystems.old.ShooterSubsystem.ShooterWheelsSet;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.ModuleConstants;
 import frc.robot.Constants.OperatorConstants;
@@ -18,32 +36,18 @@ import frc.robot.motors.MayhemCANSparkMax;
 import frc.robot.motors.MayhemTalonFX;
 import frc.robot.motors.MayhemTalonFX.CurrentLimit;
 import frc.robot.subsystems.SystemArmZero;
-import frc.robot.subsystems.ArmSubsystem.ArmIsAtPosition;
-import frc.robot.subsystems.ArmSubsystem.ArmSet;
-import frc.robot.subsystems.ArmSubsystem.ArmSetPower;
-import frc.robot.subsystems.ArmSubsystem.ArmSubsystem;
 import frc.robot.subsystems.Autonomous.*;
 import frc.robot.subsystems.Autonomous.test.AutoTestSquare;
-import frc.robot.subsystems.ClimberSubsystem.ClimberSetPower;
-import frc.robot.subsystems.ClimberSubsystem.ClimberSetPowerLeft;
-import frc.robot.subsystems.ClimberSubsystem.ClimberSetPowerRight;
-import frc.robot.subsystems.ClimberSubsystem.ClimberSubsystem;
 import frc.robot.subsystems.DriveBase.DriveBaseSubsystem;
 import frc.robot.subsystems.DriveBase.DriveByJoystick;
 import frc.robot.subsystems.DriveBase.DriveZeroGyro;
-import frc.robot.subsystems.IntakeRollers.IntakeRollers;
-import frc.robot.subsystems.IntakeRollers.IntakeRollersSet;
+import frc.robot.subsystems.Intake.Intake;
+import frc.robot.subsystems.Intake.IntakeSetPower;
 import frc.robot.subsystems.LimeLight.LimeLightSubsystem;
+import frc.robot.subsystems.Magazine.Magazine;
+import frc.robot.subsystems.Magazine.MagazineSetPower;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterSetPower;
-import frc.robot.subsystems.ShooterSubsystem.ShootNote;
-import frc.robot.subsystems.ShooterSubsystem.ShootNotePost;
-import frc.robot.subsystems.ShooterSubsystem.ShootNotePre;
-import frc.robot.subsystems.ShooterSubsystem.ShooterMag;
-import frc.robot.subsystems.ShooterSubsystem.ShooterMagSet;
-import frc.robot.subsystems.ShooterSubsystem.ShooterWheelBrake;
-import frc.robot.subsystems.ShooterSubsystem.ShooterWheels;
-import frc.robot.subsystems.ShooterSubsystem.ShooterWheelsSet;
 import frc.robot.subsystems.Targeting.Targeting;
 
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -54,6 +58,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -87,6 +92,8 @@ public class RobotContainer {
 
         private static final IMayhemTalonFX shooterTopMotor = new MayhemTalonFX(10, CurrentLimit.HIGH_CURRENT);
         private static final IMayhemTalonFX shooterBottomMotor = new MayhemTalonFX(11, CurrentLimit.HIGH_CURRENT);
+        private static final MayhemCANSparkMax intakeMotor = new MayhemCANSparkMax(15, MotorType.kBrushless);
+        private static final MayhemCANSparkMax magMotor = new MayhemCANSparkMax(14, MotorType.kBrushless);
 
         public static final DriveBaseSubsystem m_robotDrive = new DriveBaseSubsystem();
         public static final IntakeRollers m_rollers = new IntakeRollers(intakeTop);
@@ -96,6 +103,9 @@ public class RobotContainer {
         public static final ArmSubsystem m_arm = new ArmSubsystem(armLeft, armRight);
         public static final ClimberSubsystem m_climber = new ClimberSubsystem(climberLeft, climberRight);
         public static final Shooter m_shooter = new Shooter(shooterTopMotor, shooterBottomMotor);
+
+        public static final Intake m_intake = new Intake(intakeMotor);
+        public static final Magazine m_magazine = new Magazine(magMotor);
 
         // public static final Targeting m_targets = new Targeting();
         private static final MayhemExtreme3dPro m_driverStick = new MayhemExtreme3dPro(0);
@@ -115,8 +125,10 @@ public class RobotContainer {
 
                 m_driverStick.Button(7).onTrue(new ShooterSetPower(0));
                 m_driverStick.Button(8).onTrue(new ShooterSetPower(.10));
-                m_driverStick.Button(9).onTrue(new ShooterSetPower(.30));
-                m_driverStick.Button(10).onTrue(new ShooterSetPower(.50));
+                m_driverStick.Button(9).onTrue(new IntakeSetPower(0));
+                m_driverStick.Button(10).onTrue(new IntakeSetPower(.20));
+                m_driverStick.Button(3).onTrue(new MagazineSetPower(0));
+                m_driverStick.Button(5).onTrue(new MagazineSetPower(.2));
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(

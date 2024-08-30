@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.DriveBase.DriveAtConstantRotation;
 import frc.robot.subsystems.DriveBase.DriveForDistance;
-import frc.robot.subsystems.IntakeRollers.IntakeSequenceOn;
+import frc.robot.subsystems.old.IntakeRollers.IntakeSequenceOn;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

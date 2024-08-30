@@ -5,16 +5,16 @@
 package frc.robot.subsystems.Autonomous;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.ArmSubsystem.ArmIsAtPosition;
-import frc.robot.subsystems.ArmSubsystem.ArmSet;
-import frc.robot.subsystems.ArmSubsystem.ArmSubsystem;
 import frc.robot.subsystems.DriveBase.DriveForDistance;
 import frc.robot.subsystems.DriveBase.DriveStop;
-import frc.robot.subsystems.IntakeRollers.IntakeRollersSet;
-import frc.robot.subsystems.ShooterSubsystem.ShootNote;
-import frc.robot.subsystems.ShooterSubsystem.ShootShort;
-import frc.robot.subsystems.ShooterSubsystem.ShooterMagSet;
-import frc.robot.subsystems.ShooterSubsystem.ShooterWheelsSet;
+import frc.robot.subsystems.old.ArmSubsystem.ArmIsAtPosition;
+import frc.robot.subsystems.old.ArmSubsystem.ArmSet;
+import frc.robot.subsystems.old.ArmSubsystem.ArmSubsystem;
+import frc.robot.subsystems.old.IntakeRollers.IntakeRollersSet;
+import frc.robot.subsystems.old.ShooterSubsystem.ShootNote;
+import frc.robot.subsystems.old.ShooterSubsystem.ShootShort;
+import frc.robot.subsystems.old.ShooterSubsystem.ShooterMagSet;
+import frc.robot.subsystems.old.ShooterSubsystem.ShooterWheelsSet;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

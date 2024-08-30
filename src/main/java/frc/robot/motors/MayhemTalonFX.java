@@ -16,7 +16,11 @@ public class MayhemTalonFX extends TalonFX implements IMayhemTalonFX {
     ControlMode controlMode;
 
     public MayhemTalonFX(int deviceNumber, CurrentLimit currentLimit) {
-        super(deviceNumber, "canivore");
+        this(deviceNumber, currentLimit, "");
+    }
+
+    public MayhemTalonFX(int deviceNumber, CurrentLimit currentLimit, String canbus) {
+        super(deviceNumber, canbus);
 
         this.configFactoryDefault();
 

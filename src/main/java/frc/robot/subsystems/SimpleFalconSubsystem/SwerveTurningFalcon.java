@@ -24,7 +24,7 @@ public class SwerveTurningFalcon extends SubsystemBase {
 
   /** Creates a new SimpleFalconSubsystem. */
   public SwerveTurningFalcon(String name, int id, boolean invert) {
-    motor = new MayhemTalonFX(id, CurrentLimit.HIGH_CURRENT);
+    motor = new MayhemTalonFX(id, CurrentLimit.HIGH_CURRENT, "canivore");
     motor.setInverted(invert);
     this.name = name;
     motor.setSelectedSensorPosition(0);

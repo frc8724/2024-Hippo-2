@@ -17,7 +17,6 @@ import frc.robot.motors.IMayhemTalonFX;
 import frc.robot.motors.MayhemCANSparkMax;
 import frc.robot.motors.MayhemTalonFX;
 import frc.robot.motors.MayhemTalonFX.CurrentLimit;
-import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SystemArmZero;
 import frc.robot.subsystems.ArmSubsystem.ArmIsAtPosition;
 import frc.robot.subsystems.ArmSubsystem.ArmSet;
@@ -35,6 +34,8 @@ import frc.robot.subsystems.DriveBase.DriveZeroGyro;
 import frc.robot.subsystems.IntakeRollers.IntakeRollers;
 import frc.robot.subsystems.IntakeRollers.IntakeRollersSet;
 import frc.robot.subsystems.LimeLight.LimeLightSubsystem;
+import frc.robot.subsystems.Shooter.Shooter;
+import frc.robot.subsystems.Shooter.ShooterSetPower;
 import frc.robot.subsystems.ShooterSubsystem.ShootNote;
 import frc.robot.subsystems.ShooterSubsystem.ShootNotePost;
 import frc.robot.subsystems.ShooterSubsystem.ShootNotePre;
@@ -84,8 +85,8 @@ public class RobotContainer {
         private static final IMayhemTalonFX climberRight = new FakeFalconFX(Constants.DriveConstants.kClimberRightId,
                         CurrentLimit.HIGH_CURRENT);
 
-        private static final IMayhemTalonFX shooterTopMotor = new FakeFalconFX(10, CurrentLimit.HIGH_CURRENT);
-        private static final IMayhemTalonFX shooterBottomMotor = new FakeFalconFX(11, CurrentLimit.HIGH_CURRENT);
+        private static final IMayhemTalonFX shooterTopMotor = new MayhemTalonFX(10, CurrentLimit.HIGH_CURRENT);
+        private static final IMayhemTalonFX shooterBottomMotor = new MayhemTalonFX(11, CurrentLimit.HIGH_CURRENT);
 
         public static final DriveBaseSubsystem m_robotDrive = new DriveBaseSubsystem();
         public static final IntakeRollers m_rollers = new IntakeRollers(intakeTop);
@@ -111,6 +112,11 @@ public class RobotContainer {
                 // Configure the trigger bindings
                 configureBindings();
                 m_robotDrive.setDefaultCommand(new DriveByJoystick(m_driverStick));
+
+                m_driverStick.Button(7).onTrue(new ShooterSetPower(0));
+                m_driverStick.Button(8).onTrue(new ShooterSetPower(.10));
+                m_driverStick.Button(9).onTrue(new ShooterSetPower(.30));
+                m_driverStick.Button(10).onTrue(new ShooterSetPower(.50));
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(
@@ -164,33 +170,6 @@ public class RobotContainer {
          */
         private void configureBindings() {
 
-                // DriverStick.Button(9).onTrue(
-                // // new SequentialCommandGroup(
-                // // new DriveZeroWheels(),
-                // // new DriveZeroGyro(0.0),
-                // // new WaitCommand(1.0),
-                // // new DrivebaseResetEncoders(),
-                // // new InstantCommand(() -> m_robotDrive.drive(0, 0, 0, true),
-                // // m_robotDrive)));
-                // // new SequentialCommandGroup(
-                // // new DriveZeroWheels(),
-                // // new DriveZeroGyro(0.0),
-                // // new WaitCommand(0.1),
-                // // new DrivebaseResetEncoders(),
-                // // new InstantCommand(() -> m_robotDrive.drive(0.2, 0, 0, true),
-                // // m_robotDrive),
-                // // new WaitCommand(0.1),
-                // // new DriveZeroWheels(),
-                // // new WaitCommand(0.1),
-                // // new DriveZeroWheels(),
-                // new DriveZeroGyro(0.0)
-                // // new WaitCommand(0.1),
-                // // new DrivebaseResetEncoders(),
-                // // new InstantCommand(() -> m_robotDrive.drive(-0.2, 0, 0, true),
-                // // m_robotDrive),
-                // // new WaitCommand(0.1),
-                // // new DriveZeroWheels()));
-                // );
                 // DriverStick.Button(01).onTrue(new CenterOnTag());
                 // DriverStick.Button(10).onTrue(new DriveForDistance(0.0, 0.2, 0.0, 1.0));
                 // DriverStick.Button(11).onTrue(new DriveForDistance(0.2, 0.0, 0.0, 1.0));

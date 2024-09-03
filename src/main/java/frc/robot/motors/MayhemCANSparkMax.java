@@ -10,23 +10,28 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 /** Add your docs here. */
 public class MayhemCANSparkMax implements IMayhemCANSparkMax {
     CANSparkMax motor;
-    public MayhemCANSparkMax(int id, MotorType type){
-       motor = new CANSparkMax(id, type);
+
+    public MayhemCANSparkMax(int id, MotorType type) {
+        motor = new CANSparkMax(id, type);
     }
+
     @Override
     public void setInverted(boolean b) {
         motor.setInverted(b);
     }
+
     @Override
-    public void follow(CANSparkMax m) {
-        motor.follow(m);
+    public void follow(MayhemCANSparkMax m_right) {
+        motor.follow(m_right.motor);
     }
+
     @Override
     public CANSparkMax getMotor() {
-       return motor;
+        return motor;
     }
+
     @Override
     public void setVBusPower(double d) {
-       motor.set(d);
+        motor.set(d);
     }
 }

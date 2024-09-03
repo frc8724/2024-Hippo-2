@@ -46,6 +46,8 @@ import frc.robot.subsystems.Intake.IntakeSetPower;
 import frc.robot.subsystems.LimeLight.LimeLightSubsystem;
 import frc.robot.subsystems.Magazine.Magazine;
 import frc.robot.subsystems.Magazine.MagazineSetPower;
+import frc.robot.subsystems.Pivot.Pivot;
+import frc.robot.subsystems.Pivot.PivotByJoystick;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterSetPower;
 import frc.robot.subsystems.Targeting.Targeting;
@@ -94,6 +96,8 @@ public class RobotContainer {
         private static final IMayhemTalonFX shooterBottomMotor = new MayhemTalonFX(11, CurrentLimit.HIGH_CURRENT);
         private static final MayhemCANSparkMax intakeMotor = new MayhemCANSparkMax(15, MotorType.kBrushless);
         private static final MayhemCANSparkMax magMotor = new MayhemCANSparkMax(14, MotorType.kBrushless);
+        private static final MayhemCANSparkMax pivotLeft = new MayhemCANSparkMax(19, MotorType.kBrushless);
+        private static final MayhemCANSparkMax pivotRight = new MayhemCANSparkMax(13, MotorType.kBrushless);
 
         public static final DriveBaseSubsystem m_robotDrive = new DriveBaseSubsystem();
         public static final IntakeRollers m_rollers = new IntakeRollers(intakeTop);
@@ -106,11 +110,11 @@ public class RobotContainer {
 
         public static final Intake m_intake = new Intake(intakeMotor);
         public static final Magazine m_magazine = new Magazine(magMotor);
+        public static final Pivot m_pivot = new Pivot(pivotLeft, pivotRight);
 
         // public static final Targeting m_targets = new Targeting();
         private static final MayhemExtreme3dPro m_driverStick = new MayhemExtreme3dPro(0);
-        // private static final MayhemLogitechAttack3 operatorStick = new
-        // MayhemLogitechAttack3(2);
+        private static final MayhemLogitechAttack3 operatorStick = new MayhemLogitechAttack3(2);
         private static final AutoChooser m_auto = new AutoChooser();
         // public static final Vision vision = null; // = new Vision(0);
         public static final LimeLightSubsystem m_limelight = new LimeLightSubsystem();
@@ -129,6 +133,11 @@ public class RobotContainer {
                 m_driverStick.Button(10).onTrue(new IntakeSetPower(.20));
                 m_driverStick.Button(3).onTrue(new MagazineSetPower(0));
                 m_driverStick.Button(5).onTrue(new MagazineSetPower(.2));
+
+                m_pivot.setDefaultCommand(new PivotByJoystick(operatorStick.Axis(MayhemLogitechAttack3.Axis.Y)));
+
+                operatorStick.Button(11).onTrue(new IntakeSetPower(.5));
+                operatorStick.Button(11).onFalse(new IntakeSetPower(0));
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(

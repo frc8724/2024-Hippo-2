@@ -2,17 +2,24 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems.Intake;
+package frc.robot.subsystems.Pivot;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.motors.MayhemCANSparkMax;
 
-public class Intake extends SubsystemBase {
-  MayhemCANSparkMax m_motor;
+public class Pivot extends SubsystemBase {
+  MayhemCANSparkMax m_left;
+  MayhemCANSparkMax m_right;
 
-  /** Creates a new Intake. */
-  public Intake(MayhemCANSparkMax motor) {
-    m_motor = motor;
+  /** Creates a new Pivot. */
+  public Pivot(MayhemCANSparkMax left, MayhemCANSparkMax right) {
+    this.m_left = left;
+    this.m_right = right;
+
+    m_left.setInverted(true);
+    m_right.setInverted(false);
+
+    m_left.follow(m_right);
   }
 
   @Override
@@ -21,6 +28,6 @@ public class Intake extends SubsystemBase {
   }
 
   public void setPower(double d) {
-    m_motor.setVBusPower(d);
+    m_right.setVBusPower(d);
   }
 }

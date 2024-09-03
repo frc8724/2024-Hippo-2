@@ -13,7 +13,10 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 /** Add your docs here. */
 public interface IMayhemCANSparkMax {
     CANSparkMax getMotor();
+
     void setInverted(boolean b);
-    void follow(CANSparkMax m);
+
+    void follow(MayhemCANSparkMax m);
+
     void setVBusPower(double d);
 }

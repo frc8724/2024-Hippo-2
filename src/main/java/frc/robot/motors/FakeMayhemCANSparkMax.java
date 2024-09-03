@@ -9,11 +9,12 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /** Add your docs here. */
 public class FakeMayhemCANSparkMax implements IMayhemCANSparkMax {
-    public FakeMayhemCANSparkMax(int id, MotorType type){
+    public FakeMayhemCANSparkMax(int id, MotorType type) {
     }
 
     @Override
-    public void setInverted(boolean b) {}
+    public void setInverted(boolean b) {
+    }
 
     @Override
     public CANSparkMax getMotor() {
@@ -21,8 +22,10 @@ public class FakeMayhemCANSparkMax implements IMayhemCANSparkMax {
     }
 
     @Override
-    public void follow(CANSparkMax m) {}
+    public void follow(MayhemCANSparkMax m) {
+    }
 
     @Override
-    public void setVBusPower(double d) {}
+    public void setVBusPower(double d) {
+    }
 }

@@ -136,8 +136,14 @@ public class RobotContainer {
 
                 m_pivot.setDefaultCommand(new PivotByJoystick(operatorStick.Axis(MayhemLogitechAttack3.Axis.Y)));
 
-                operatorStick.Button(11).onTrue(new IntakeSetPower(.5));
+                operatorStick.Button(11).onTrue(new IntakeSetPower(.2));
                 operatorStick.Button(11).onFalse(new IntakeSetPower(0));
+
+                operatorStick.Button(10).onTrue(new MagazineSetPower(.5));
+                operatorStick.Button(10).onFalse(new MagazineSetPower(.0));
+
+                operatorStick.Button(1).onTrue(new ShooterSetPower(-.5));
+                operatorStick.Button(1).onFalse(new ShooterSetPower(.0));
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(

@@ -15,11 +15,6 @@ public class Pivot extends SubsystemBase {
   public Pivot(MayhemCANSparkMax left, MayhemCANSparkMax right) {
     this.m_left = left;
     this.m_right = right;
-
-    m_left.setInverted(true);
-    m_right.setInverted(false);
-
-    m_left.follow(m_right);
   }
 
   @Override
@@ -29,5 +24,6 @@ public class Pivot extends SubsystemBase {
 
   public void setPower(double d) {
     m_right.setVBusPower(d);
+    m_left.setVBusPower(d);
   }
 }

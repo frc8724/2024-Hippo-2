@@ -21,8 +21,8 @@ public class MayhemCANSparkMax implements IMayhemCANSparkMax {
     }
 
     @Override
-    public void follow(MayhemCANSparkMax m_right) {
-        motor.follow(m_right.motor);
+    public void follow(MayhemCANSparkMax leader) {
+        motor.follow(leader.motor);
     }
 
     @Override

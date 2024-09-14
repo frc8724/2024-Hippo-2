@@ -28,7 +28,7 @@ public class PivotByJoystick extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double d = m_ds.getAsDouble() / 4;
+    double d = m_ds.getAsDouble() / 3;
 
     RobotContainer.m_pivot.setPower(d);
   }

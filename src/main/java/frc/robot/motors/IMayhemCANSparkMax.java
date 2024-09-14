@@ -4,11 +4,7 @@
 
 package frc.robot.motors;
 
-import com.ctre.phoenix.motorcontrol.IFollower;
-import com.ctre.phoenix.motorcontrol.IMotorController;
 import com.revrobotics.CANSparkMax;
-
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 /** Add your docs here. */
 public interface IMayhemCANSparkMax {

@@ -5,7 +5,8 @@
 package frc.robot.motors;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkPIDController;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 /** Add your docs here. */
 public class MayhemCANSparkMax implements IMayhemCANSparkMax {
@@ -13,6 +14,7 @@ public class MayhemCANSparkMax implements IMayhemCANSparkMax {
 
     public MayhemCANSparkMax(int id, MotorType type) {
         motor = new CANSparkMax(id, type);
+        motor.restoreFactoryDefaults();
     }
 
     @Override

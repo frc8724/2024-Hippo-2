@@ -5,28 +5,19 @@
 package frc.robot.subsystems.System;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.old.ArmSubsystem.ArmIsAtPosition;
-import frc.robot.subsystems.old.ArmSubsystem.ArmSet;
-import frc.robot.subsystems.old.ArmSubsystem.ArmSubsystem;
-import frc.robot.subsystems.old.IntakeRollers.IntakeRollersSet;
-import frc.robot.subsystems.old.ShooterSubsystem.ShooterMagSet;
-import frc.robot.subsystems.old.ShooterSubsystem.ShooterWheelBrake;
-import frc.robot.subsystems.old.ShooterSubsystem.ShooterWheelsSet;
+import frc.robot.subsystems.Intake.IntakeSetPower;
+import frc.robot.subsystems.Magazine.MagazineSetPower;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class SystemIntakeNote extends SequentialCommandGroup {
   /** Creates a new SystemIntakeNote. */
-  public SystemIntakeNote() {
+  public SystemIntakeNote(double power) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new ArmSet(ArmSubsystem.NOTE_INTAKE),
-        new ArmIsAtPosition(ArmSubsystem.POSITION_SLOP),
-        new IntakeRollersSet(0.45),
-        new ShooterMagSet(0.5),
-        new ShooterWheelsSet(0.0),
-        new ShooterWheelBrake());
+        new IntakeSetPower(power),
+        new MagazineSetPower(power));
   }
 }

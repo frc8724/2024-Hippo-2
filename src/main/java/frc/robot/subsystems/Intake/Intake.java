@@ -8,11 +8,17 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.motors.MayhemCANSparkMax;
 
 public class Intake extends SubsystemBase {
-  MayhemCANSparkMax m_motor;
+  MayhemCANSparkMax m_motorA;
+  MayhemCANSparkMax m_motorB;
 
   /** Creates a new Intake. */
-  public Intake(MayhemCANSparkMax motor) {
-    m_motor = motor;
+  public Intake(MayhemCANSparkMax motorA, MayhemCANSparkMax motorB) {
+    m_motorA = motorA;
+    m_motorB = motorB;
+
+    m_motorA.setInverted(true);
+
+    m_motorB.follow(m_motorA);
   }
 
   @Override
@@ -21,6 +27,6 @@ public class Intake extends SubsystemBase {
   }
 
   public void setPower(double d) {
-    m_motor.setVBusPower(d);
+    m_motorA.setVBusPower(d);
   }
 }

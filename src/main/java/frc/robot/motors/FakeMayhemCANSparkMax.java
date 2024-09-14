@@ -5,7 +5,7 @@
 package frc.robot.motors;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 /** Add your docs here. */
 public class FakeMayhemCANSparkMax implements IMayhemCANSparkMax {

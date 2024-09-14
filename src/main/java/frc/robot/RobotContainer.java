@@ -50,9 +50,8 @@ import frc.robot.subsystems.Pivot.Pivot;
 import frc.robot.subsystems.Pivot.PivotByJoystick;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterSetPower;
+import frc.robot.subsystems.System.SystemIntakeNote;
 import frc.robot.subsystems.Targeting.Targeting;
-
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
@@ -60,7 +59,7 @@ import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.CANSparkLowLevel.MotorType;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -94,7 +93,8 @@ public class RobotContainer {
 
         private static final IMayhemTalonFX shooterTopMotor = new MayhemTalonFX(10, CurrentLimit.HIGH_CURRENT);
         private static final IMayhemTalonFX shooterBottomMotor = new MayhemTalonFX(11, CurrentLimit.HIGH_CURRENT);
-        private static final MayhemCANSparkMax intakeMotor = new MayhemCANSparkMax(15, MotorType.kBrushless);
+        private static final MayhemCANSparkMax intakeMotorA = new MayhemCANSparkMax(15, MotorType.kBrushless);
+        private static final MayhemCANSparkMax intakeMotorB = new MayhemCANSparkMax(20, MotorType.kBrushless);
         private static final MayhemCANSparkMax magMotor = new MayhemCANSparkMax(14, MotorType.kBrushless);
         private static final MayhemCANSparkMax pivotLeft = new MayhemCANSparkMax(19, MotorType.kBrushless);
         private static final MayhemCANSparkMax pivotRight = new MayhemCANSparkMax(13, MotorType.kBrushless);
@@ -108,7 +108,7 @@ public class RobotContainer {
         public static final ClimberSubsystem m_climber = new ClimberSubsystem(climberLeft, climberRight);
         public static final Shooter m_shooter = new Shooter(shooterTopMotor, shooterBottomMotor);
 
-        public static final Intake m_intake = new Intake(intakeMotor);
+        public static final Intake m_intake = new Intake(intakeMotorA, intakeMotorB);
         public static final Magazine m_magazine = new Magazine(magMotor);
         public static final Pivot m_pivot = new Pivot(pivotLeft, pivotRight);
 
@@ -136,13 +136,13 @@ public class RobotContainer {
 
                 m_pivot.setDefaultCommand(new PivotByJoystick(operatorStick.Axis(MayhemLogitechAttack3.Axis.Y)));
 
-                operatorStick.Button(11).onTrue(new IntakeSetPower(.2));
-                operatorStick.Button(11).onFalse(new IntakeSetPower(0));
+                operatorStick.Button(11).onTrue(new SystemIntakeNote(.4));
+                operatorStick.Button(11).onFalse(new SystemIntakeNote(0));
 
-                operatorStick.Button(10).onTrue(new MagazineSetPower(.5));
+                operatorStick.Button(10).onTrue(new MagazineSetPower(.7));
                 operatorStick.Button(10).onFalse(new MagazineSetPower(.0));
 
-                operatorStick.Button(1).onTrue(new ShooterSetPower(-.5));
+                operatorStick.Button(1).onTrue(new ShooterSetPower(-.75));
                 operatorStick.Button(1).onFalse(new ShooterSetPower(.0));
 
                 // m_arm.setDefaultCommand(

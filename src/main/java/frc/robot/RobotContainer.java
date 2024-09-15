@@ -48,6 +48,7 @@ import frc.robot.subsystems.Magazine.Magazine;
 import frc.robot.subsystems.Magazine.MagazineSetPower;
 import frc.robot.subsystems.Pivot.Pivot;
 import frc.robot.subsystems.Pivot.PivotByJoystick;
+import frc.robot.subsystems.Pivot.PivotSetPosition;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterSetPower;
 import frc.robot.subsystems.System.SystemIntakeNote;
@@ -134,7 +135,8 @@ public class RobotContainer {
                 m_driverStick.Button(3).onTrue(new MagazineSetPower(0));
                 m_driverStick.Button(5).onTrue(new MagazineSetPower(.2));
 
-                m_pivot.setDefaultCommand(new PivotByJoystick(operatorStick.Axis(MayhemLogitechAttack3.Axis.Y)));
+                // m_pivot.setDefaultCommand(new
+                // PivotByJoystick(operatorStick.Axis(MayhemLogitechAttack3.Axis.Y)));
 
                 operatorStick.Button(11).onTrue(new SystemIntakeNote(.4));
                 operatorStick.Button(11).onFalse(new SystemIntakeNote(0));
@@ -144,6 +146,9 @@ public class RobotContainer {
 
                 operatorStick.Button(1).onTrue(new ShooterSetPower(-.75));
                 operatorStick.Button(1).onFalse(new ShooterSetPower(.0));
+
+                operatorStick.Button(4).onTrue(new PivotSetPosition(0));
+                operatorStick.Button(5).onTrue(new PivotSetPosition(6));
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(

@@ -6,7 +6,12 @@ package frc.robot.subsystems.Pivot;
 
 import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkPIDController;
+import com.revrobotics.CANSparkBase.ControlType;
 
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.motors.MayhemCANSparkMax;
@@ -18,28 +23,71 @@ public class Pivot extends SubsystemBase {
   SparkPIDController pid;
   RelativeEncoder encoder;
 
+  ShuffleboardTab tab = Shuffleboard.getTab("Pivot");
+  GenericEntry entryP;
+  GenericEntry entryI;
+  GenericEntry entryD;
+  GenericEntry entryF;
+
+  double setPoint;
+
   /** Creates a new Pivot. */
   public Pivot(MayhemCANSparkMax left, MayhemCANSparkMax right) {
     this.m_left = left;
     this.m_right = right;
 
-    m_right.setInverted(false);
+    m_right.setInverted(true);
 
     m_left.getMotor().follow(m_right.getMotor(), true);
 
     pid = m_right.getMotor().getPIDController();
+
+    pid.setP(0.1);
+    pid.setI(0);
+    pid.setD(4.0);
+    pid.setFF(0);
+
+    pid.setOutputRange(-.1, .3);
+
     encoder = m_right.getMotor().getEncoder();
+    // encoder.setInverted(true);
     setZero();
+
+    entryP = tab
+        .add("P", 0.1)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .getEntry();
+    entryI = tab
+        .add("I", 0.0)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .getEntry();
+    entryD = tab
+        .add("D", 4.0)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .getEntry();
+    entryF = tab
+        .add("F", 0.0)
+        .withWidget(BuiltInWidgets.kNumberSlider)
+        .getEntry();
   }
 
   public void setZero() {
     m_right.getMotor().getEncoder().setPosition(0.0);
+    setPoint = 0;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+
+    pid.setP(entryP.getDouble(0));
+    pid.setI(entryI.getDouble(0));
+    pid.setD(entryD.getDouble(0));
+    pid.setFF(entryF.getDouble(0));
+
     SmartDashboard.putNumber("pivot", encoder.getPosition());
+    SmartDashboard.putNumber("pivot P", pid.getP());
+    SmartDashboard.putNumber("pivot setpoint", setPoint);
   }
 
   public void setPower(double d) {
@@ -47,6 +95,7 @@ public class Pivot extends SubsystemBase {
   }
 
   public void setPosition(double pos) {
-
+    setPoint = pos;
+    pid.setReference(pos, ControlType.kPosition);
   }
 }

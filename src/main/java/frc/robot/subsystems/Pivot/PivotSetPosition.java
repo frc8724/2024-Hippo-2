@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.Pivot;
 
-import edu.wpi.first.hal.simulation.RoboRioDataJNI;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 

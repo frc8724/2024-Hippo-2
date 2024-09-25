@@ -16,6 +16,9 @@ public class Intake extends SubsystemBase {
     m_motorA = motorA;
     m_motorB = motorB;
 
+    m_motorA.getMotor().setSmartCurrentLimit(40);
+    m_motorB.getMotor().setSmartCurrentLimit(40);
+
     m_motorA.setInverted(true);
 
     m_motorB.follow(m_motorA);

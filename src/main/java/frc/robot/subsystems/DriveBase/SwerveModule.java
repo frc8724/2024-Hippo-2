@@ -114,8 +114,10 @@ public class SwerveModule extends SubsystemBase {
 
         // System.out.println(this.m_magEncoder.m_analogInput.getChannel() + " Swerve
         // Mag " + magTicks);
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " Swerve Mag ", magTicks);
-        SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + " Swerve Wheel ", wheelTicks);
+        // SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + "
+        // Swerve Mag ", magTicks);
+        // SmartDashboard.putNumber(this.m_magEncoder.m_analogInput.getChannel() + "
+        // Swerve Wheel ", wheelTicks);
         super.periodic();
     }
 

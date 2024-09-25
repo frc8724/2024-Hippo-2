@@ -24,6 +24,7 @@ public class SwerveEncoder extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("mag encoder " + m_analogInput.getChannel(), m_analogInput.getValue());
+    SmartDashboard.putNumber("mag encoder " + m_analogInput.getChannel(),
+        m_analogInput.getValue());
   }
 }

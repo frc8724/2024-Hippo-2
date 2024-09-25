@@ -187,8 +187,9 @@ public class SwerveTurningFalcon extends SubsystemBase {
   @Override
   public void periodic() {
     // // This method will be called once per scheduler run
-    SmartDashboard.putNumber(this.name + " position", motor.getSelectedSensorPosition());
-    SmartDashboard.putNumber(this.name + " error", motor.getClosedLoopError());
+    // SmartDashboard.putNumber(this.name + " position",
+    // motor.getSelectedSensorPosition());
+    // SmartDashboard.putNumber(this.name + " error", motor.getClosedLoopError());
     // SmartDashboard.putNumber(this.name + " MOTOR_TICKS_PER_WHEEL_ROTATION",
     // MOTOR_TICKS_PER_WHEEL_ROTATION);
     // SmartDashboard.putNumber(this.name + " rads", this.getRotationRadians());

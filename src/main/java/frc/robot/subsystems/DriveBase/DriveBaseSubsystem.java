@@ -127,7 +127,7 @@ public class DriveBaseSubsystem extends SubsystemBase {
                         m_rearRightSwerveModule.getPosition()
                 });
 
-        SmartDashboard.putNumber("drive heading", getHeading());
+        // SmartDashboard.putNumber("drive heading", getHeading());
     }
 
     public Pose2d getPose() {

@@ -76,16 +76,16 @@ public class ShooterWheels extends SubsystemBase {
     }
 
     private void updateDashboard() {
-        SmartDashboard.putNumber("Shooter Wheel RPM",
-                convertTicksPer100msToRPM(leftMotor.getSelectedSensorVelocity(0)));
+        // SmartDashboard.putNumber("Shooter Wheel RPM",
+        // convertTicksPer100msToRPM(leftMotor.getSelectedSensorVelocity(0)));
 
-        SmartDashboard.putNumber("Shooter Wheel target RPM", m_targetSpeedRPM);
+        // SmartDashboard.putNumber("Shooter Wheel target RPM", m_targetSpeedRPM);
         // SmartDashboard.putNumber("Shooter Wheel Error",
         // m_targetSpeedRPM -
         // convertTicksPer100msToRPM(shooterWheel.getSelectedSensorVelocity(0)));
 
-        SmartDashboard.putBoolean("shooter too slow", this.isShooterTooSlow());
-        SmartDashboard.putBoolean("shooter too fast", this.isShooterTooFast());
+        // SmartDashboard.putBoolean("shooter too slow", this.isShooterTooSlow());
+        // SmartDashboard.putBoolean("shooter too fast", this.isShooterTooFast());
     }
 
     /**

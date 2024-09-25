@@ -75,8 +75,8 @@ public class ClimberSubsystem extends SubsystemBase {
     // }
 
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Arm Position", getCurrentPosition());
-    SmartDashboard.putNumber("Arm Target", getTargetPosition());
+    // SmartDashboard.putNumber("Arm Position", getCurrentPosition());
+    // SmartDashboard.putNumber("Arm Target", getTargetPosition());
     // SmartDashboard.putNumber("Arm Error", talon.getClosedLoopError());
     // SmartDashboard.putNumber("Arm Error 2", Math.abs(getCurrentPosition() -
     // getTargetPosition()));

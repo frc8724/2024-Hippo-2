@@ -13,6 +13,9 @@ public class Magazine extends SubsystemBase {
   /** Creates a new Magazine. */
   public Magazine(MayhemCANSparkMax motor) {
     m_motor = motor;
+    m_motor.getMotor().setSmartCurrentLimit(20);
+
+    setPower(0);
   }
 
   @Override

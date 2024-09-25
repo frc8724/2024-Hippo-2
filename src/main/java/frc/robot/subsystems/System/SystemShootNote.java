@@ -5,23 +5,34 @@
 package frc.robot.subsystems.System;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.subsystems.Intake.IntakeSetPower;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.Magazine.MagazineSetPower;
+import frc.robot.subsystems.Shooter.ShooterSetPower;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class SystemIntakeNote extends SequentialCommandGroup {
-  /** Creates a new SystemIntakeNote. */
-  public SystemIntakeNote(double power) {
-    this(power, power);
-  }
-
-  public SystemIntakeNote(double intakePower, double magPower) {
+public class SystemShootNote extends SequentialCommandGroup {
+  /** Creates a new SystemShootNote. */
+  public SystemShootNote() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new IntakeSetPower(intakePower),
-        new MagazineSetPower(magPower));
+        // back up
+        new MagazineSetPower(-.2),
+        new WaitCommand(.2),
+
+        // warm up shooter
+        new MagazineSetPower(0),
+        new ShooterSetPower(-.75),
+        new WaitCommand(1.0),
+
+        // FIRE!
+        new MagazineSetPower(1.0),
+        new WaitCommand(2),
+
+        // Shutdown
+        new ShooterSetPower(0),
+        new MagazineSetPower(0));
   }
 }

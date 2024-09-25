@@ -54,6 +54,7 @@ public class Shooter extends SubsystemBase {
 
     this.topMotor.configClosedLoopPeakOutput(slot, 0.5);
 
+    this.setPower(0);
   }
 
   @Override

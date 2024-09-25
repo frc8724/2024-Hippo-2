@@ -15,8 +15,13 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.motors.MayhemCANSparkMax;
+import frc.robot.subsystems.Intake.Intake;
 
 public class Pivot extends SubsystemBase {
+  public static final double ZERO = 0;
+  public static final double SHORT_SHOT = 4;
+  public static final double AMP_SHOT = 12.0;
+
   MayhemCANSparkMax m_left;
   MayhemCANSparkMax m_right;
 
@@ -52,6 +57,7 @@ public class Pivot extends SubsystemBase {
     encoder = m_right.getMotor().getEncoder();
     // encoder.setInverted(true);
     setZero();
+    setPower(0);
 
     entryP = tab
         .add("P", 0.1)
@@ -80,14 +86,14 @@ public class Pivot extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
 
-    pid.setP(entryP.getDouble(0));
-    pid.setI(entryI.getDouble(0));
-    pid.setD(entryD.getDouble(0));
-    pid.setFF(entryF.getDouble(0));
+    // pid.setP(entryP.getDouble(0));
+    // pid.setI(entryI.getDouble(0));
+    // pid.setD(entryD.getDouble(0));
+    // pid.setFF(entryF.getDouble(0));
 
-    SmartDashboard.putNumber("pivot", encoder.getPosition());
-    SmartDashboard.putNumber("pivot P", pid.getP());
-    SmartDashboard.putNumber("pivot setpoint", setPoint);
+    // SmartDashboard.putNumber("pivot", encoder.getPosition());
+    // SmartDashboard.putNumber("pivot P", pid.getP());
+    // SmartDashboard.putNumber("pivot setpoint", setPoint);
   }
 
   public void setPower(double d) {

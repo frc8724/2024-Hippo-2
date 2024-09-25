@@ -52,6 +52,7 @@ import frc.robot.subsystems.Pivot.PivotSetPosition;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterSetPower;
 import frc.robot.subsystems.System.SystemIntakeNote;
+import frc.robot.subsystems.System.SystemShootNote;
 import frc.robot.subsystems.Targeting.Targeting;
 
 import edu.wpi.first.wpilibj2.command.Command;
@@ -128,27 +129,30 @@ public class RobotContainer {
                 configureBindings();
                 m_robotDrive.setDefaultCommand(new DriveByJoystick(m_driverStick));
 
-                m_driverStick.Button(7).onTrue(new ShooterSetPower(0));
-                m_driverStick.Button(8).onTrue(new ShooterSetPower(.10));
-                m_driverStick.Button(9).onTrue(new IntakeSetPower(0));
-                m_driverStick.Button(10).onTrue(new IntakeSetPower(.20));
-                m_driverStick.Button(3).onTrue(new MagazineSetPower(0));
-                m_driverStick.Button(5).onTrue(new MagazineSetPower(.2));
+                m_driverStick.Button(9).onTrue(new DriveZeroGyro(0));
+
+                // m_driverStick.Button(7).onTrue(new ShooterSetPower(0));
+                // m_driverStick.Button(8).onTrue(new ShooterSetPower(.10));
+                // m_driverStick.Button(9).onTrue(new IntakeSetPower(0));
+                // m_driverStick.Button(10).onTrue(new IntakeSetPower(.20));
+                // m_driverStick.Button(3).onTrue(new MagazineSetPower(0));
+                // m_driverStick.Button(5).onTrue(new MagazineSetPower(.2));
 
                 // m_pivot.setDefaultCommand(new
                 // PivotByJoystick(operatorStick.Axis(MayhemLogitechAttack3.Axis.Y)));
 
-                operatorStick.Button(11).onTrue(new SystemIntakeNote(.4));
+                operatorStick.Button(11).onTrue(new SystemIntakeNote(.7, .8));
                 operatorStick.Button(11).onFalse(new SystemIntakeNote(0));
 
-                operatorStick.Button(10).onTrue(new MagazineSetPower(.7));
-                operatorStick.Button(10).onFalse(new MagazineSetPower(.0));
+                operatorStick.Button(10).onTrue(new SystemIntakeNote(-.4, -.4));
+                operatorStick.Button(10).onFalse(new SystemIntakeNote(.0));
 
-                operatorStick.Button(1).onTrue(new ShooterSetPower(-.75));
-                operatorStick.Button(1).onFalse(new ShooterSetPower(.0));
+                operatorStick.Button(1).onTrue(new SystemShootNote());
+                // operatorStick.Button(1).onFalse(new ShooterSetPower(.0));
 
-                operatorStick.Button(4).onTrue(new PivotSetPosition(0));
-                operatorStick.Button(5).onTrue(new PivotSetPosition(6));
+                operatorStick.Button(4).onTrue(new PivotSetPosition(Pivot.ZERO));
+                operatorStick.Button(5).onTrue(new PivotSetPosition(Pivot.SHORT_SHOT));
+                operatorStick.Button(2).onTrue(new PivotSetPosition(Pivot.AMP_SHOT));
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(

@@ -114,12 +114,12 @@ public class ArmSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Shoulder left Ticks",
-        leftMotor.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Shoulder right Ticks",
-        rightMotor.getSelectedSensorPosition());
-    SmartDashboard.putNumber("Shoulder Target Ticks",
-        this.getTargetPositionTicks());
+    // SmartDashboard.putNumber("Shoulder left Ticks",
+    // leftMotor.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Shoulder right Ticks",
+    // rightMotor.getSelectedSensorPosition());
+    // SmartDashboard.putNumber("Shoulder Target Ticks",
+    // this.getTargetPositionTicks());
 
     // wheelP = SmartDashboard.getNumber("Shoulder P", kWheelP);
     // SmartDashboard.putNumber("Shoulder P", kWheelP);
@@ -130,7 +130,7 @@ public class ArmSubsystem extends SubsystemBase {
     // // wheelF = SmartDashboard.getNumber("Shoulder F", kWheelF);
     // SmartDashboard.putNumber("Shoulder F", kWheelF);
 
-    SmartDashboard.putBoolean("Shoulder at Position", isAtPosition());
+    // SmartDashboard.putBoolean("Shoulder at Position", isAtPosition());
 
     // SmartDashboard.putNumber("Shoulder error", rightTalon.getClosedLoopError());
 

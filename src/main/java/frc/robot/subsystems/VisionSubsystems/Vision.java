@@ -116,15 +116,15 @@ public class Vision {
             // Scalar(255, 0, 0), 2);
             Imgproc.rectangle(source, target.rect.tl(), target.rect.br(), new Scalar(0, 0, 255), 2);
 
-            SmartDashboard.putNumber("Vision X", this.target.getCenter().x);
-            SmartDashboard.putNumber("Vision Y", this.target.getCenter().y);
+            // SmartDashboard.putNumber("Vision X", this.target.getCenter().x);
+            // SmartDashboard.putNumber("Vision Y", this.target.getCenter().y);
 
-            SmartDashboard.putNumber("Vision area", this.target.area());
+            // SmartDashboard.putNumber("Vision area", this.target.area());
         } else {
-            SmartDashboard.putNumber("Vision X", -1);
-            SmartDashboard.putNumber("Vision Y", -1);
+            // SmartDashboard.putNumber("Vision X", -1);
+            // SmartDashboard.putNumber("Vision Y", -1);
 
-            SmartDashboard.putNumber("Vision area", -1);
+            // SmartDashboard.putNumber("Vision area", -1);
 
         }
 

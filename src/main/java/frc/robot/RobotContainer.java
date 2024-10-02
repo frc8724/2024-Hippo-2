@@ -51,6 +51,7 @@ import frc.robot.subsystems.Pivot.PivotByJoystick;
 import frc.robot.subsystems.Pivot.PivotSetPosition;
 import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterSetPower;
+import frc.robot.subsystems.System.SystemAutoShootShort;
 import frc.robot.subsystems.System.SystemIntakeNote;
 import frc.robot.subsystems.System.SystemShootNote;
 import frc.robot.subsystems.Targeting.Targeting;
@@ -59,8 +60,13 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
+
+import com.fasterxml.jackson.core.sym.Name;
+import com.pathplanner.lib.auto.NamedCommands;
+import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 /**
@@ -127,6 +133,7 @@ public class RobotContainer {
         public RobotContainer() {
                 // Configure the trigger bindings
                 configureBindings();
+                configureNamedCommands();
                 m_robotDrive.setDefaultCommand(new DriveByJoystick(m_driverStick));
 
                 m_driverStick.Button(9).onTrue(new DriveZeroGyro(0));
@@ -153,6 +160,7 @@ public class RobotContainer {
                 operatorStick.Button(4).onTrue(new PivotSetPosition(Pivot.ZERO));
                 operatorStick.Button(5).onTrue(new PivotSetPosition(Pivot.SHORT_SHOT));
                 operatorStick.Button(2).onTrue(new PivotSetPosition(Pivot.AMP_SHOT));
+                operatorStick.Button(7).onTrue(new SystemAutoShootShort());
 
                 // m_arm.setDefaultCommand(
                 // new RunCommand(
@@ -300,14 +308,27 @@ public class RobotContainer {
                 // m_climber.setPower(0);
         }
 
+        private void configureNamedCommands() {
+                NamedCommands.registerCommand("SystemShootNote", new SystemShootNote());
+                NamedCommands.registerCommand("PivotShortShot", new PivotSetPosition(Pivot.SHORT_SHOT));
+
+                NamedCommands.registerCommand("SystemAutoShootShort", new SystemAutoShootShort());
+                NamedCommands.registerCommand("SystemIntakeNote2sec",
+                                new SequentialCommandGroup(new SystemIntakeNote(.5),
+                                                new WaitCommand(1.5),
+                                                new SystemIntakeNote(0))
+                                                .handleInterrupt(() -> RobotContainer.m_intake.setPower(0)));
+        }
+
         /**
          * Use this to pass the autonomous command to the main {@link Robot} class.
          *
          * @return the command to run in autonomous
          */
         public Command getAutonomousCommand() {
-                // An example command will be run in autonomous
-                return m_auto.getAutoCommand();
-        }
 
+                // An example command will be run in autonomous
+                // return m_auto.getAutoCommand();
+                return new PathPlannerAuto("StartShortShootGather1");
+        }
 }

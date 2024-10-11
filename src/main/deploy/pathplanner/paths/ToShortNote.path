@@ -3,45 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.68,
-        "y": 7.73
+        "x": 1.1969112668610487,
+        "y": 5.5
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.567470528150756,
-        "y": 7.671445817271092
-      },
-      "isLocked": true,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 4.581343028591905,
-        "y": 5.972526638348569
-      },
-      "prevControl": {
-        "x": 5.580831421472659,
-        "y": 6.004510266920752
-      },
-      "nextControl": {
-        "x": 3.1174884603692163,
-        "y": 5.925683292165444
+        "x": 2.0540825697036027,
+        "y": 6.058302885836541
       },
       "isLocked": false,
-      "linkedName": "ShootShortCenter"
+      "linkedName": "StartCenter"
     },
     {
       "anchor": {
-        "x": 1.08,
-        "y": 5.562647359246215
+        "x": 2.9828138400927284,
+        "y": 7.038212764014687
       },
       "prevControl": {
-        "x": 1.8997585582047058,
-        "y": 5.562647359246215
+        "x": 1.4916668294875066,
+        "y": 6.985795510052559
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "ShortSideNote"
     }
   ],
   "rotationTargets": [],
@@ -49,7 +33,7 @@
   "eventMarkers": [
     {
       "name": "New Event Marker",
-      "waypointRelativePos": 0.1,
+      "waypointRelativePos": 0.75,
       "command": {
         "type": "parallel",
         "data": {
@@ -57,7 +41,7 @@
             {
               "type": "named",
               "data": {
-                "name": "SystemShootNote"
+                "name": "SystemIntakeNote2sec"
               }
             }
           ]
@@ -66,8 +50,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 5.0,
+    "maxAcceleration": 2.5,
     "maxAngularVelocity": 360.0,
     "maxAngularAcceleration": 360.0
   },
@@ -77,7 +61,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "StartCenter",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0

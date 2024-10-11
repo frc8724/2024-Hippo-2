@@ -46,6 +46,12 @@
           "data": {
             "name": "PivotZero"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "StartShortGoToCenter"
+          }
         }
       ]
     }

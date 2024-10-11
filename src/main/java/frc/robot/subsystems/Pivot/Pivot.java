@@ -20,7 +20,7 @@ import frc.robot.subsystems.Intake.Intake;
 public class Pivot extends SubsystemBase {
   public static final double ZERO = 0;
   public static final double SHORT_SHOT = 4;
-  public static final double AMP_SHOT = 12.0;
+  public static final double AMP_SHOT = 12.35;
 
   MayhemCANSparkMax m_left;
   MayhemCANSparkMax m_right;
@@ -91,9 +91,9 @@ public class Pivot extends SubsystemBase {
     // pid.setD(entryD.getDouble(0));
     // pid.setFF(entryF.getDouble(0));
 
-    // SmartDashboard.putNumber("pivot", encoder.getPosition());
-    // SmartDashboard.putNumber("pivot P", pid.getP());
-    // SmartDashboard.putNumber("pivot setpoint", setPoint);
+    SmartDashboard.putNumber("pivot", encoder.getPosition());
+    SmartDashboard.putNumber("pivot P", pid.getP());
+    SmartDashboard.putNumber("pivot setpoint", setPoint);
   }
 
   public void setPower(double d) {

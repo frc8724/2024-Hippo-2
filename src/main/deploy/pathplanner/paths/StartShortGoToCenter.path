@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.9828138400927284,
-        "y": 7.038212764014687
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 1.7765976758772322,
-        "y": 7.108477783289376
-      },
-      "isLocked": false,
-      "linkedName": "ShortSideNote"
-    },
-    {
-      "anchor": {
         "x": 0.5586706751159561,
         "y": 6.593200975274988
       },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.06223664658456,
+        "y": 7.0967669467435925
+      },
+      "isLocked": false,
+      "linkedName": "StartShort"
+    },
+    {
+      "anchor": {
+        "x": 7.673003876678222,
+        "y": 7.436381206571257
+      },
       "prevControl": {
-        "x": 1.179345012042376,
-        "y": 6.90939356201109
+        "x": 6.829823645381953,
+        "y": 7.448092043117038
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "StartShort"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
@@ -39,13 +39,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 62.24145939894002,
+    "rotation": 1.6846843178962125,
     "rotateFast": false
   },
   "reversed": false,
   "folder": "StartShort",
   "previewStartingState": {
-    "rotation": -1.628266323962563e-10,
+    "rotation": 60.80251395393564,
     "velocity": 0
   },
   "useDefaultConstraints": true

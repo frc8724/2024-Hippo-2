@@ -27,7 +27,7 @@ public class SystemShootNote extends SequentialCommandGroup {
         // warm up shooter
         new MagazineSetPower(0),
         new ShooterSetPower(-.75),
-        new WaitCommand(1.0),
+        new WaitCommand(.5),
 
         // FIRE!
         new MagazineSetPower(1.0),

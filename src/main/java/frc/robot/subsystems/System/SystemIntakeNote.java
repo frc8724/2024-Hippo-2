@@ -7,6 +7,7 @@ package frc.robot.subsystems.System;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.subsystems.Intake.IntakeSetPower;
 import frc.robot.subsystems.Magazine.MagazineSetPower;
+import frc.robot.subsystems.Shooter.ShooterSetPower;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -21,6 +22,7 @@ public class SystemIntakeNote extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+        new ShooterSetPower(0),
         new IntakeSetPower(intakePower),
         new MagazineSetPower(magPower));
   }

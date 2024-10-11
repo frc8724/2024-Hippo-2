@@ -14,13 +14,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "New Path"
+            "pathName": "unused 01"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "PathBack"
+            "pathName": "unused 02"
           }
         }
       ]

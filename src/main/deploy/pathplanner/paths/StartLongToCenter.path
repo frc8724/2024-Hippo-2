@@ -3,52 +3,34 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.8237041089466803,
-        "y": 5.5
+        "x": 0.6727105761903848,
+        "y": 4.578261464215237
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9336805314672856,
-        "y": 5.5
+        "x": 1.5607354291631679,
+        "y": 4.4795920361071495
       },
       "isLocked": false,
-      "linkedName": "Note2"
+      "linkedName": "StartLong"
     },
     {
       "anchor": {
-        "x": 1.1969112668610487,
-        "y": 5.5
+        "x": 7.64958220358666,
+        "y": 2.389010655339427
       },
       "prevControl": {
-        "x": 2.016669825065754,
-        "y": 5.5
+        "x": 6.185727635363972,
+        "y": 0.1873733847325026
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "StartCenter"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [
-    {
-      "name": "New Event Marker",
-      "waypointRelativePos": 0.5,
-      "command": {
-        "type": "sequential",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "PivotShortShot"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.0,
     "maxAcceleration": 2.5,
@@ -61,9 +43,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "StartCenter",
+  "folder": "StartLong",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": -57.52880770915156,
     "velocity": 0
   },
   "useDefaultConstraints": true

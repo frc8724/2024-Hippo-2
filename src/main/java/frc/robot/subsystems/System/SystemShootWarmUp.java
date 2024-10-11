@@ -4,7 +4,6 @@
 
 package frc.robot.subsystems.System;
 
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.subsystems.Magazine.MagazineSetPower;
@@ -15,20 +14,16 @@ import frc.robot.subsystems.Shooter.ShooterSetPower;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class SystemAutoShootShort extends SequentialCommandGroup {
-  /** Creates a new SystemAutoShootShort. */
-  public SystemAutoShootShort() {
+public class SystemShootWarmUp extends SequentialCommandGroup {
+  /** Creates a new SystemShootWarmUp. */
+  public SystemShootWarmUp() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new ParallelCommandGroup(
-            new PivotSetPosition(Pivot.SHORT_SHOT),
-            new ShooterSetPower(-.75)),
-        new WaitCommand(.5),
-        new MagazineSetPower(.75),
-        new WaitCommand(1.0),
-        new ShooterSetPower(0),
-        new MagazineSetPower(0));
-    // new PivotSetPosition(0));
+        new PivotSetPosition(Pivot.SHORT_SHOT),
+        new MagazineSetPower(-.2),
+        new ShooterSetPower(.2),
+        new WaitCommand(.3),
+        new ShooterSetPower(-0.75));
   }
 }

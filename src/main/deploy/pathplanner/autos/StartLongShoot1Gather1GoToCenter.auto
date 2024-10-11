@@ -2,10 +2,10 @@
   "version": 1.0,
   "startingPose": {
     "position": {
-      "x": 0.56,
-      "y": 6.59
+      "x": 0.6727105761903848,
+      "y": 4.558527578593619
     },
-    "rotation": 60.0
+    "rotation": -57.994616791916464
   },
   "command": {
     "type": "sequential",
@@ -20,13 +20,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "StartShort1"
+            "pathName": "StartLong1"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "StartShort2"
+            "pathName": "StartLong2"
           }
         },
         {
@@ -45,6 +45,12 @@
           "type": "named",
           "data": {
             "name": "PivotZero"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "StartLongToCenter"
           }
         }
       ]

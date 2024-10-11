@@ -12,20 +12,20 @@
         "y": 5.5
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "StartCenter"
     },
     {
       "anchor": {
-        "x": 2.9,
+        "x": 2.8237041089466803,
         "y": 5.5
       },
       "prevControl": {
-        "x": 1.9,
+        "x": 1.8237041089466803,
         "y": 5.5
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Note2"
     }
   ],
   "rotationTargets": [],
@@ -50,8 +50,8 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 4.0,
-    "maxAcceleration": 2.0,
+    "maxVelocity": 5.0,
+    "maxAcceleration": 2.5,
     "maxAngularVelocity": 360.0,
     "maxAngularAcceleration": 360.0
   },
@@ -61,7 +61,7 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": null,
+  "folder": "StartCenter",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0

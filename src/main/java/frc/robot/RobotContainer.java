@@ -167,10 +167,16 @@ public class RobotContainer {
                 m_operatorPad.BUTTON_FIVE.onTrue(new SystemScoreAmp());
                 m_operatorPad.BUTTON_FIVE.onFalse(new SystemScoreAmpStop());
 
-                // m_auto.addAuto(new AuthDriveMidNote3AndBack());
+                m_auto.addAuto(new WaitCommand(5));
                 m_auto.addAuto(new AutoDriveOut());
                 m_auto.addAuto(new AutoTestSquare());
 
+                m_auto.addAuto(new PathPlannerAuto("StartCenterShortShoot3Left"));
+                m_auto.addAuto(new PathPlannerAuto("StartCenterShoot1Gather1"));
+                m_auto.addAuto(new PathPlannerAuto("StartShortShootGather1"));
+                m_auto.addAuto(new PathPlannerAuto("StartLongShoot1Gather1"));
+                m_auto.addAuto(new PathPlannerAuto("StartLongShoot1Gather1GoToCenter"));
+                m_auto.addAuto(new PathPlannerAuto("StartShortShoot1Gather1GoToCenter"));
         }
 
         /**
@@ -226,6 +232,7 @@ public class RobotContainer {
                 // return auto1;
                 // return new PathPlannerAuto("StartCenterScore3");
                 return new SequentialCommandGroup(new SystemStopAllMotors(),
-                                new PathPlannerAuto("StartCenterShortShoot3Left"));
+                                m_auto.getAutoCommand());
+                // new PathPlannerAuto("StartCenterShortShoot3Left"));
         }
 }

@@ -25,5 +25,9 @@ public class SystemIntakeNote extends SequentialCommandGroup {
         new ShooterSetPower(0),
         new IntakeSetPower(intakePower),
         new MagazineSetPower(magPower));
+
+    if (magPower < 0) {
+      addCommands(new ShooterSetPower(-magPower));
+    }
   }
 }

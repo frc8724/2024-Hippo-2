@@ -4,11 +4,16 @@
 
 package frc.robot.subsystems.Magazine;
 
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.motors.MayhemCANSparkMax;
 
 public class Magazine extends SubsystemBase {
   MayhemCANSparkMax m_motor;
+
+  DigitalInput beamBreakSensorInner = new DigitalInput(0);
+  DigitalInput beamBreakSensorOuter = new DigitalInput(1);
 
   /** Creates a new Magazine. */
   public Magazine(MayhemCANSparkMax motor) {
@@ -21,9 +26,19 @@ public class Magazine extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putBoolean("Mag Beam Break Inner", getBeamBreakSensorInner());
+    SmartDashboard.putBoolean("Mag Beam Break Outer", getBeamBreakSensorOuter());
   }
 
   public void setPower(double d) {
     m_motor.setVBusPower(d);
+  }
+
+  public boolean getBeamBreakSensorInner() {
+    return beamBreakSensorInner.get();
+  }
+
+  public boolean getBeamBreakSensorOuter() {
+    return beamBreakSensorOuter.get();
   }
 }

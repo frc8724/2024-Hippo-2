@@ -169,7 +169,7 @@ public class RobotContainer {
 
                 m_auto.addAuto(new WaitCommand(5));
                 m_auto.addAuto(new AutoDriveOut());
-                m_auto.addAuto(new AutoTestSquare());
+                // m_auto.addAuto(new AutoTestSquare());
 
                 m_auto.addAuto(new PathPlannerAuto("StartCenterShortShoot3Left"));
                 m_auto.addAuto(new PathPlannerAuto("StartCenterShoot1Gather1"));

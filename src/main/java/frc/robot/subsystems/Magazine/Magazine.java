@@ -10,6 +10,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.motors.MayhemCANSparkMax;
 
 public class Magazine extends SubsystemBase {
+  public enum NotePosition {
+    TOO_FAR_IN,
+    JUST_RIGHT,
+    TOO_FAR_OUT,
+  };
+
   MayhemCANSparkMax m_motor;
 
   DigitalInput beamBreakSensorInner = new DigitalInput(0);
@@ -40,5 +46,21 @@ public class Magazine extends SubsystemBase {
 
   public boolean getBeamBreakSensorOuter() {
     return beamBreakSensorOuter.get();
+  }
+
+  public NotePosition getNotePosition() {
+    if (getBeamBreakSensorInner()) {
+      if (getBeamBreakSensorOuter()) {
+        return NotePosition.TOO_FAR_OUT;
+      } else {
+        return NotePosition.JUST_RIGHT;
+      }
+    } else { // inner not broken
+      if (getBeamBreakSensorOuter()) {
+        return NotePosition.TOO_FAR_OUT;
+      } else {
+        return NotePosition.TOO_FAR_IN;
+      }
+    }
   }
 }

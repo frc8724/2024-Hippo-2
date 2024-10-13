@@ -54,6 +54,7 @@ import frc.robot.subsystems.Shooter.Shooter;
 import frc.robot.subsystems.Shooter.ShooterSetPower;
 import frc.robot.subsystems.System.SystemArmZero;
 import frc.robot.subsystems.System.SystemAutoShootShort;
+import frc.robot.subsystems.System.SystemCenterNote;
 import frc.robot.subsystems.System.SystemIntakeNote;
 import frc.robot.subsystems.System.SystemScoreAmp;
 import frc.robot.subsystems.System.SystemScoreAmpStop;
@@ -152,6 +153,8 @@ public class RobotContainer {
 
                 m_operatorPad.BUTTON_THREE.onTrue(new SystemIntakeNote(-.4, -.4));
                 m_operatorPad.BUTTON_THREE.onFalse(new SystemIntakeNote(.0));
+
+                m_operatorPad.BUTTON_FOUR.whileTrue(new SystemCenterNote());
 
                 m_operatorPad.BUTTON_SIX.onTrue(new SystemShootWarmUp());
                 m_operatorPad.BUTTON_SIX.onFalse(new SystemShootNoteAndStorePivot());

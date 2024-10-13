@@ -17,7 +17,7 @@ public class MayhemOperatorPad {
     public final Trigger BUTTON_ONE = new JoystickButton(OPERATOR_PAD, 1);
     public final Trigger BUTTON_TWO = new JoystickButton(OPERATOR_PAD, 2);
     public final Trigger BUTTON_THREE = new JoystickButton(OPERATOR_PAD, 3);
-    public final Trigger OPERATOR_PAD_BUTTON_FOUR = new JoystickButton(OPERATOR_PAD, 4);
+    public final Trigger BUTTON_FOUR = new JoystickButton(OPERATOR_PAD, 4);
     public final Trigger BUTTON_FIVE = new JoystickButton(OPERATOR_PAD, 5);
     public final Trigger BUTTON_SIX = new JoystickButton(OPERATOR_PAD, 6);
     public final Trigger OPERATOR_PAD_BUTTON_SEVEN = new JoystickButton(OPERATOR_PAD, 7);

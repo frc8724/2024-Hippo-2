@@ -28,6 +28,7 @@ import frc.robot.Constants.ModuleConstants;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.controls.MayhemExtreme3dPro;
 import frc.robot.controls.MayhemLogitechAttack3;
+import frc.robot.controls.MayhemOperatorPad;
 import frc.robot.motors.FakeFalconFX;
 import frc.robot.motors.FakeMayhemCANSparkMax;
 import frc.robot.motors.IMayhemCANSparkMax;
@@ -128,7 +129,9 @@ public class RobotContainer {
 
         // public static final Targeting m_targets = new Targeting();
         private static final MayhemExtreme3dPro m_driverStick = new MayhemExtreme3dPro(0);
-        private static final MayhemLogitechAttack3 operatorStick = new MayhemLogitechAttack3(2);
+        private static final MayhemOperatorPad m_operatorPad = new MayhemOperatorPad();
+        // private static final MayhemLogitechAttack3 operatorStick = new
+        // MayhemLogitechAttack3(2);
         private static final AutoChooser m_auto = new AutoChooser();
         // public static final Vision vision = null; // = new Vision(0);
         public static final LimeLightSubsystem m_limelight = new LimeLightSubsystem();
@@ -144,35 +147,25 @@ public class RobotContainer {
 
                 m_driverStick.Button(9).onTrue(new DriveZeroGyro(0));
 
-                // m_driverStick.Button(7).onTrue(new ShooterSetPower(0));
-                // m_driverStick.Button(8).onTrue(new ShooterSetPower(.10));
-                // m_driverStick.Button(9).onTrue(new IntakeSetPower(0));
-                // m_driverStick.Button(10).onTrue(new IntakeSetPower(.20));
-                // m_driverStick.Button(3).onTrue(new MagazineSetPower(0));
-                // m_driverStick.Button(5).onTrue(new MagazineSetPower(.2));
+                m_operatorPad.BUTTON_TWO.onTrue(new SystemIntakeNote(.7, .8));
+                m_operatorPad.BUTTON_TWO.onFalse(new SystemIntakeNote(0));
 
-                // m_pivot.setDefaultCommand(new
-                // PivotByJoystick(operatorStick.Axis(MayhemLogitechAttack3.Axis.Y)));
+                m_operatorPad.BUTTON_THREE.onTrue(new SystemIntakeNote(-.4, -.4));
+                m_operatorPad.BUTTON_THREE.onFalse(new SystemIntakeNote(.0));
 
-                operatorStick.Button(11).onTrue(new SystemIntakeNote(.7, .8));
-                operatorStick.Button(11).onFalse(new SystemIntakeNote(0));
+                m_operatorPad.BUTTON_SIX.onTrue(new SystemShootWarmUp());
+                m_operatorPad.BUTTON_SIX.onFalse(new SystemShootNoteAndStorePivot());
 
-                operatorStick.Button(10).onTrue(new SystemIntakeNote(-.4, -.4));
-                operatorStick.Button(10).onFalse(new SystemIntakeNote(.0));
-
-                operatorStick.Button(1).onTrue(new SystemShootWarmUp());
-                operatorStick.Button(1).onFalse(new SystemShootNoteAndStorePivot());
-
-                operatorStick.Button(4).onTrue(
+                m_operatorPad.D_PAD_DOWN.onTrue(
                                 new SequentialCommandGroup(
                                                 new PivotSetPosition(Pivot.ZERO),
                                                 new WaitCommand(1),
                                                 new PivotSetPower(0)));
-                operatorStick.Button(5).onTrue(new PivotSetPosition(Pivot.SHORT_SHOT));
+                m_operatorPad.D_PAD_RIGHT.onTrue(new PivotSetPosition(Pivot.SHORT_SHOT));
                 // operatorStick.Button(2).onTrue(new PivotSetPosition(Pivot.AMP_SHOT));
-                operatorStick.Button(7).onTrue(new SystemAutoShootShort());
-                operatorStick.Button(3).onTrue(new SystemScoreAmp());
-                operatorStick.Button(3).onFalse(new SystemScoreAmpStop());
+                // m_operatorPad.Button(7).onTrue(new SystemAutoShootShort());
+                m_operatorPad.BUTTON_FIVE.onTrue(new SystemScoreAmp());
+                m_operatorPad.BUTTON_FIVE.onFalse(new SystemScoreAmpStop());
 
                 // m_auto.addAuto(new AuthDriveMidNote3AndBack());
                 m_auto.addAuto(new AutoDriveOut());

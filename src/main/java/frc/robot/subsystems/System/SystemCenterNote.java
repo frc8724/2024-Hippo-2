@@ -27,17 +27,17 @@ public class SystemCenterNote extends Command {
   @Override
   public void execute() {
     switch (RobotContainer.m_magazine.getNotePosition()) {
-      case Magazine.NotePosition.JUST_RIGHT:
+      case JUST_RIGHT:
         RobotContainer.m_intake.setPower(0);
         RobotContainer.m_magazine.setPower(0);
         RobotContainer.m_shooter.setPower(0);
         break;
-      case Magazine.NotePosition.TOO_FAR_IN:
+      case TOO_FAR_IN:
         RobotContainer.m_intake.setPower(0.2);
         RobotContainer.m_magazine.setPower(0.2);
         RobotContainer.m_shooter.setPower(-0.2);
         break;
-      case Magazine.NotePosition.TOO_FAR_OUT:
+      case TOO_FAR_OUT:
         RobotContainer.m_intake.setPower(-.2);
         RobotContainer.m_magazine.setPower(-.2);
         RobotContainer.m_shooter.setPower(.2);
